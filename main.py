@@ -1,4 +1,3 @@
-# lego_classifier_small_dataset.py
 import os
 
 import numpy as np
@@ -28,7 +27,6 @@ def runtime():
                 image = rgb2gray(image)
                 image = resize(image, IMAGE_SIZE)
 
-                # HOG features
                 features = hog(
                     image,
                     orientations=9,
@@ -38,22 +36,9 @@ def runtime():
                 x.append(features)
                 y.append(label)
 
-                # Optional augmentation: small rotations
-                if augment:
-                    for angle in [-15, 15]:  # rotate left and right
-                        rotated = rotate(image, angle)
-                        features_rot = hog(
-                            rotated,
-                            orientations=9,
-                            pixels_per_cell=(8, 8),
-                            cells_per_block=(2, 2),
-                        )
-                        x.append(features_rot)
-                        y.append(label)
-
         return np.array(x), np.array(y)
 
-    # --- Load dataset ---
+    # load images
     x, y = load_images(augment=True)
     model = LinearSVC()
     model.fit(x, y)
@@ -71,8 +56,8 @@ def runtime():
         prediction = model.predict([features])[0]
         return CATEGORIES[prediction]
 
-    # test image results
-    test_file = "images/test/27.jpg"
+    # test user image
+    test_file = input("path to file: ")
     return f"Prediction for {test_file}: {predict_image(test_file)}"
 
 
