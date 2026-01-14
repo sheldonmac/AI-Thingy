@@ -5,7 +5,9 @@ from skimage.color import rgb2gray
 from skimage.feature import hog
 from skimage.io import imread
 from skimage.transform import resize, rotate
-from sklearn.svm import LinearSVC
+
+# from sklearn.svm import LinearSVC
+from sklearn.svm import SVC
 
 # Settings
 IMAGE_SIZE = (128, 128)
@@ -40,7 +42,7 @@ def runtime():
 
     # load images
     x, y = load_images(augment=True)
-    model = LinearSVC()
+    model = SVC(kernel="rbf", C=10, gamma="scale")
     model.fit(x, y)
 
     print(f"Training completed on {len(x)} images (including augmented).")
@@ -56,9 +58,14 @@ def runtime():
         prediction = model.predict([features])[0]
         return CATEGORIES[prediction]
 
-    # test user image
-    test_file = input("path to file: ")
-    return f"Prediction for {test_file}: {predict_image(test_file)}"
+    for test_file in os.listdir("images/test"):
+        print(
+            f"Prediction for {test_file}: {predict_image(f'images/test/{test_file}')}"
+        )
+
+    # uncomment to test your own files
+    # test_file = input("path to file: ")
+    # return f"Prediction for {test_file}: {predict_image(test_file)}"
 
 
 print(runtime())
