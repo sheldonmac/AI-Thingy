@@ -1,0 +1,21 @@
+Notes from article
+
+every neuron has a set of x-values numbered from 1-n
+the x-value is the input that will try to calculate the y value
+the x-vector contains the valuse of every "feature" of the input
+each nuron has its own set of parameters where there is a W(eight) and a B(ais) which are adjusted from the learning process
+the neuron calculates a weighted avarage of teh values of the vector based on its weight and bias
+
+The weight is the information coming in from the x-vector. for exsample inputing a drawing of a number would be the weight
+Whereas the bias is the already known information like other exsamples of numbers already given
+(This is just my understanding it may be wrong)
+
+
+the result of the neuron's calculation is a non linear function. If the images of cats and dogs were ploted on a graph, the linear function would be the line that seperates them best.
+(This is just my understanding it may be wrong)
+
+"in 1957 the simplest neural netowrk that consist of n number of inputs, only one neuron and one output where n is the number of features of our dataset. the process of passing the data through the number of features of our dataset. the process of passing the data throught the neural netowrk is known as forward propagation and the forward propagation is carried out in a perceptron.
+
+for each input multiply the value x1 with weights w1 and sum all the multiplied values weights represent the strength of the connection b
+
+ok i barely understood any of that article so im going to skip to the part where it explains how to make the model
